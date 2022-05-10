@@ -1,38 +1,34 @@
-from locale import DAY_2
 import random
 import math
-def sorteia_pais(dicio):
-    paissorteado, dados = random.choice(list(dicio.items()))
-    return  paissorteado
+#vai precisar da normaliza p dicas
 def normaliza(dicio):
     diciofinal = {}
     for dados in dicio.values():
         for pais, info in dados.items():
             diciofinal[pais] = info 
     return diciofinal
-def adiciona_em_ordem(pais, dist, lista):
-    x = [pais, dist]
-    j=0
-    if pais in lista:
-        return lista 
-    if len(lista) == 0:
-        lista.append(x)
-    elif pais not in lista:
-        for i in range(len(lista)):
-            if lista[i][1]<dist:
-                j+=1
-            if lista [i][1]>dist:
-                lista.insert(j, x)
-                break
-    return lista
-def haversine (r, ro1, epsi1, ro2, epsi2):
-    ro1r = math.radians(ro1)
-    epsi1r = math.radians(epsi1)
-    ro2r = math.radians(ro2)
-    epsi2r = math.radians(epsi2)
+#sorteador com normaliza dentro 
+def sorteia_pais(dicio):
+    diciofinal = {}
+    for dados in dicio.values():
+        for pais, info in dados.items():
+            diciofinal[pais] = info 
+    paissorteado, dados = random.choice(list(diciofinal.items()))
+    return  paissorteado
+
+import math
+#latA = latitude do ponto A
+#longA = longitutde do ponto A
+#latb = latitiude do ponto B 
+#longb = longitude do ponto B
+def haversine (r, latA, longA, latB, longB):
+    latAr = math.radians(latA)
+    longAr = math.radians(longA)
+    latBr = math.radians(latB)
+    longBr = math.radians(longB)
     x = 2*r
     
-    raiz  = (math.sin((ro2r -ro1r)/2))*2 + math.cos(ro1r) * math.cos(ro2r) *( math.sin((epsi2r-epsi1r)/2))*2
+    raiz  = (math.sin((latBr -latAr)/2))*2 + math.cos(latAr) * math.cos(latBr) *( math.sin((longBr-longAr)/2))*2
     parenteses = math.asin(math.sqrt(raiz))
     d = x * parenteses
     return d
@@ -51,10 +47,27 @@ def sorteia_letra (palavra):
             lista_restritas.append(letra_sorteada)
             lista_de_lestras.remove(letra_sorteada)
     return lista_restritas
+
+def adiciona_em_ordem(pais, dist, lista):
+    x = [pais, dist]
+    j=0
+    if pais in lista:
+        return lista 
+    if len(lista) == 0:
+        lista.append(x)
+    elif pais not in lista:
+        for i in range(len(lista)):
+            if lista[i][1]<dist:
+                j+=1
+            if lista [i][1]>dist:
+                lista.insert(j, x)
+                break
+    return lista
 tentativas=20
 EARTH_RADIUS = 6371
 with open('base de dados.py','r')as arquivo:
     conteudo=arquivo.read
+
 
 #dicas:
 d1=
