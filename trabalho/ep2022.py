@@ -1,3 +1,4 @@
+from locale import DAY_2
 import random
 import math
 def sorteia_pais(dicio):
@@ -41,26 +42,15 @@ def esta_na_lista(pais, lista):
             return True
     else:
         return False
-def sorteia_letra (palavra, lista_restrita):
-    restritas = ['.', ',', '-', ';', ' ', "'"]
+def sorteia_letra (palavra):
+    lista_restritas = []
     palavra = palavra.lower()
-
-    for i in lista_restrita:
-        restritas.append(i)
-
-    for j in palavra:
-        if j in restritas:
-            palavra = palavra.replace(j, '')
-                
-    if palavra == '':
-        return ''
-        
-    letra = random.choice(palavra)
-
-    while letra in restritas:
-        letra = random.choice(palavra)
-        
-    return letra
+    lista_de_lestras=list(palavra)
+    letra_sorteada=random.choice(lista_de_lestras)
+    if letra_sorteada not in lista_restritas:
+            lista_restritas.append(letra_sorteada)
+            lista_de_lestras.remove(letra_sorteada)
+    return lista_restritas
 tentativas=20
 EARTH_RADIUS = 6371
 with open('base de dados.py','r')as arquivo:
@@ -68,10 +58,13 @@ with open('base de dados.py','r')as arquivo:
 
 #dicas:
 d1=
+d2=
+d3=
+d4=
+d5=
 while tentativas>0:
     start=input('1.Tentar acertar(1).\n''2.Loja de dicas(2)')
     if start=='1':
         print('asdjfsasdfas')
     if start=='2':
         loja=input('Você pode comprar as dicas (1) e (2) multiplas vezes.\n{}\n{}\n{}\n{}\n{}'.format(d1,d2,d3,d4,d5))
-
