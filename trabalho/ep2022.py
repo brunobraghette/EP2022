@@ -1,4 +1,3 @@
-from locale import DAY_2
 import random
 import math
 def sorteia_pais(dicio):
@@ -57,14 +56,15 @@ with open('base de dados.py','r')as arquivo:
     conteudo=arquivo.read
 
 #dicas:
-d1=
-d2=
-d3=
-d4=
-d5=
+d1='1. Cor da Bandeira - Preço: 4 tentativas'
+d2='2. Letra da Capital - Preço: 3 tentativas'
+d3='3. Área - Preço: 6 tenativas'
+d4="4. População - Preço: 5 tenativas "
+d5="5.Continente - Preço: 7 tentativas/n"
+d0='Voltar'
 while tentativas>0:
     start=input('1.Tentar acertar(1).\n''2.Loja de dicas(2)')
     if start=='1':
         print('asdjfsasdfas')
     if start=='2':
-        loja=input('Você pode comprar as dicas (1) e (2) multiplas vezes.\n{}\n{}\n{}\n{}\n{}'.format(d1,d2,d3,d4,d5))
+        loja=input('Você pode comprar as dicas (1) e (2) multiplas vezes.\n{}\n{}\n{}\n{}\n{}\n{}'.format(d1,d2,d3,d4,d5,d0))
