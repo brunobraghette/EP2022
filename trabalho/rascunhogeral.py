@@ -3831,12 +3831,9 @@ def normaliza(dicio):
         for pais, info in dados.items():
             diciofinal[pais] = info 
     return diciofinal
-pais = 'afeganistao'
-# pais = sorteia_pais(DADOS)
+pais = sorteia_pais(DADOS)
 arrumando = normaliza(DADOS)
-for localizacao, dados in arrumando.items():
-  if localizacao == pais:
-    print( "jdshfsdjh")
+
     
 
   
@@ -3846,7 +3843,9 @@ for localizacao, dados in arrumando.items():
 #longA = longitutde do ponto A
 #latb = latitiude do ponto B 
 #longb = longitude do ponto B
-def haversine (latA, longA, latB, longB):
+def haversine (lista, latB, longB):
+  latA = lista[0]
+  latB = [1]
   r = 6371
   latAr = math.radians(latA)
   longAr = math.radians(longA)

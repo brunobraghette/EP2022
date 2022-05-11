@@ -3812,7 +3812,7 @@ DADOS = {
     }
   }
 }
-#normalizando a base:
+#normalizando a base e sorteando país:
 import random 
 def normaliza(dicio):
     diciofinal = {}
