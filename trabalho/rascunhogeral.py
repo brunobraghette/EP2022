@@ -3834,26 +3834,20 @@ def normaliza(dicio):
 pais = sorteia_pais(DADOS)
 arrumando = normaliza(DADOS)
 
-    
+brigadeiro=float(arrumando[pais]['geo']['latitude'])
+beijinho=float(arrumando[pais]['geo']['longitude'])
 
-  
-     
-
-#latA = latitude do ponto A
-#longA = longitutde do ponto A
-#latb = latitiude do ponto B 
-#longb = longitude do ponto B
-def haversine (lista, latB, longB):
-  latA = lista[0]
-  latB = [1]
+import math
+import math
+def haversine (ro1, epsi1, ro2, epsi2):
   r = 6371
-  latAr = math.radians(latA)
-  longAr = math.radians(longA)
-  latBr = math.radians(latB)
-  longBr = math.radians(longB)
+  ro1r = math.radians(ro1)
+  epsi1r = math.radians(epsi1)
+  ro2r = math.radians(ro2)
+  epsi2r = math.radians(epsi2)
   x = 2*r
     
-  raiz  = (math.sin((latBr -latAr)/2))*2 + math.cos(latAr) * math.cos(latBr) *( math.sin((longBr-longAr)/2))*2
+  raiz  = (math.sin((ro2r -ro1r)/2))**2 + math.cos(ro1r) * math.cos(ro2r) *( math.sin((epsi2r-epsi1r)/2))**2
   parenteses = math.asin(math.sqrt(raiz))
   d = x * parenteses
   return d
@@ -3892,7 +3886,17 @@ def adiciona_em_ordem(pais, dist, lista):
                 lista.insert(j, x)
                 break
     return lista
-brigadeiro=float(arrumando[pais]['geo']['latitude'])
-beijinho=float(arrumando[pais]['geo']['longitude'])
-docinhos=[brigadeiro,beijinho]
-print (brigadeiro)
+
+tentativas = 20
+while tentativas>0:
+  escolhe = int(input('Escolhe uma opção:\n''1. tentar acertar(1)\n''2. mercado de dicas(2)\n'))
+  if escolhe == 1:
+    tenta = input("escolha um pais:")
+    if tenta != pais:
+      cord1=float(arrumando[tenta]['geo']['latitude'])
+      cord2=float(arrumando[tenta]['geo']['longitude'])
+      cordp=[cord1,cord2]
+      dist = haversine(brigadeiro, beijinho, cord1, cord2)
+      print('você errou\n''a distância de {} até país sorteado é de {}'.format(tenta, dist))
+
+
