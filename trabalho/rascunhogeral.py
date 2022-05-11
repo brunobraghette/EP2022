@@ -3892,67 +3892,7 @@ def adiciona_em_ordem(pais, dist, lista):
                 lista.insert(j, x)
                 break
     return lista
-tentativas=20
-EARTH_RADIUS = 6371
-with open('database.py','r')as arquivo:
-    conteudo=arquivo.read
-
-
-#dicas:
-d0 = "0.sem dica(0)"
-d1= '1. Cor da Bandeira(1) - Preço: 4 tentativas\n'
-d2= '2. Letra da Capital(2) - Preço: 3 tentativas\n'
-d3= '3. Área(3) - Preço: 6 tenativas\n'
-d4= "4. População(4) - Preço: 5 tenativas\n "
-d5= "5. Continente(5) - Preço: 7 tenativas\n "
-while tentativas>0:
-
-    start=input('O que você deseja ?\n' '1.Tentar acertar(1).\n''2.Loja de dicas(2)')
-    if start=='1':
-        tentativa = input("digite um pais: ")
-        if tentativa != pais:
-          distancia = haversine()
-          tentativas-=1
-          print("a distância desse país até a {} é de {}km". format(tentativa, distancia))
-          print("Você ainda tem {} tentativas".format(tentativas))
-
-
-
-
-    if start=='2':
-      loja=input('Você pode comprar as dicas (1) e (2) multiplas vezes.\n{}\n{}\n{}\n{}\n{}'.format(d1,d2,d3,d4,d5))
-      if loja == d1:
-        if tentativas>5:
-          tentativas -=5 
-          print("Você ainda tem {}".format(tentativas))
-        else:
-          print("Opção inválida")
-      elif loja == d2:
-        if tentativas>3:
-          tentativas -=3
-          print("Você ainda tem {}".format(tentativas))
-        else:
-          print("Opção inválida")
-      elif loja == d3:
-        if tentativas > 6:
-          tentativas -= 6
-          print("Você ainda tem {}".format(tentativas))
-        else:
-          print("Opção inválida")
-      elif loja == d4:
-        if tentativas>5:
-          tentativas -=5
-          print("Você ainda tem {}".format(tentativas))
-        else:
-          print("Opção inválida")
-      elif loja == d5:
-        if tentativas>7:
-          tentativas -=7
-          print("Você ainda tem {}".format(tentativas))
-        else:
-          print("Opção inválida")
-      elif loja == d0:
-        break
-      
-
-        
+brigadeiro=float(arrumando[pais]['geo']['latitude'])
+beijinho=float(arrumando[pais]['geo']['longitude'])
+docinhos=[brigadeiro,beijinho]
+print (brigadeiro)
