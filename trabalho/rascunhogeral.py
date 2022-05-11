@@ -3831,7 +3831,8 @@ def normaliza(dicio):
         for pais, info in dados.items():
             diciofinal[pais] = info 
     return diciofinal
-pais = sorteia_pais(DADOS)
+pais = 'afeganistao'
+# pais = sorteia_pais(DADOS)
 arrumando = normaliza(DADOS)
 for localizacao, dados in arrumando.items():
   if localizacao == pais:
