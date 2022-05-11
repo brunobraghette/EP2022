@@ -3816,12 +3816,6 @@ DADOS = {
 import random
 import math
 #vai precisar da normaliza p dicas
-def normaliza(dicio):
-    diciofinal = {}
-    for dados in dicio.values():
-        for pais, info in dados.items():
-            diciofinal[pais] = info 
-    return diciofinal
 #sorteador com normaliza dentro 
 def sorteia_pais(dicio):
     diciofinal = {}
@@ -3830,7 +3824,23 @@ def sorteia_pais(dicio):
             diciofinal[pais] = info 
     paissorteado, dados = random.choice(list(diciofinal.items()))
     return  paissorteado
+#vai precisar da normaliza p dicas
+def normaliza(dicio):
+    diciofinal = {}
+    for dados in dicio.values():
+        for pais, info in dados.items():
+            diciofinal[pais] = info 
+    return diciofinal
 pais = sorteia_pais(DADOS)
+arrumando = normaliza(DADOS)
+for localizacao, dados in arrumando.items():
+  if localizacao == pais:
+    print( "jdshfsdjh")
+    
+
+  
+     
+
 #latA = latitude do ponto A
 #longA = longitutde do ponto A
 #latb = latitiude do ponto B 
@@ -3889,12 +3899,12 @@ with open('database.py','r')as arquivo:
 
 
 #dicas:
-d0 = "sem dica"
-d1= '1. Cor da Bandeira - Preço: 4 tentativas\n'
-d2= '2. Letra da Capital - Preço: 3 tentativas\n'
-d3= '3. Área - Preço: 6 tenativas\n'
-d4= "4. População - Preço: 5 tenativas\n "
-d5= "4. População - Preço: 5 tenativas\n "
+d0 = "0.sem dica(0)"
+d1= '1. Cor da Bandeira(1) - Preço: 4 tentativas\n'
+d2= '2. Letra da Capital(2) - Preço: 3 tentativas\n'
+d3= '3. Área(3) - Preço: 6 tenativas\n'
+d4= "4. População(4) - Preço: 5 tenativas\n "
+d5= "5. Continente(5) - Preço: 7 tenativas\n "
 while tentativas>0:
 
     start=input('O que você deseja ?\n' '1.Tentar acertar(1).\n''2.Loja de dicas(2)')
@@ -3903,11 +3913,46 @@ while tentativas>0:
         if tentativa != pais:
           distancia = haversine()
           tentativas-=1
+          print("a distância desse país até a {} é de {}km". format(tentativa, distancia))
           print("Você ainda tem {} tentativas".format(tentativas))
 
 
 
 
     if start=='2':
-        loja=input('Você pode comprar as dicas (1) e (2) multiplas vezes.\n{}\n{}\n{}\n{}\n{}'.format(d1,d2,d3,d4,d5))
+      loja=input('Você pode comprar as dicas (1) e (2) multiplas vezes.\n{}\n{}\n{}\n{}\n{}'.format(d1,d2,d3,d4,d5))
+      if loja == d1:
+        if tentativas>5:
+          tentativas -=5 
+          print("Você ainda tem {}".format(tentativas))
+        else:
+          print("Opção inválida")
+      elif loja == d2:
+        if tentativas>3:
+          tentativas -=3
+          print("Você ainda tem {}".format(tentativas))
+        else:
+          print("Opção inválida")
+      elif loja == d3:
+        if tentativas > 6:
+          tentativas -= 6
+          print("Você ainda tem {}".format(tentativas))
+        else:
+          print("Opção inválida")
+      elif loja == d4:
+        if tentativas>5:
+          tentativas -=5
+          print("Você ainda tem {}".format(tentativas))
+        else:
+          print("Opção inválida")
+      elif loja == d5:
+        if tentativas>7:
+          tentativas -=7
+          print("Você ainda tem {}".format(tentativas))
+        else:
+          print("Opção inválida")
+      elif loja == d0:
+        break
+      
+
         
