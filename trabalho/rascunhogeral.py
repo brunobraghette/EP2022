@@ -3853,6 +3853,20 @@ def cores_da_bandeira(database):
     listacores.append('branca')
   return listacores
 
+def acha_area(basededados):
+  area = basededados[pais]['area']
+  return area
+
+def acha_populacao(data):
+  pop = data[pais]['populacao']
+  return pop
+
+def acha_continente(dados):
+  for i, n  in dados.items():
+    for k, z in i.items():
+      if pais in z:
+        print(i)
+
 brigadeiro=float(arrumando[pais]['geo']['latitude'])
 beijinho=float(arrumando[pais]['geo']['longitude'])
 
@@ -3906,6 +3920,8 @@ def adiciona_em_ordem(pais, dist, lista):
                 break
     return lista
 
+cor_usada = []
+
 d1='1. Cor da Bandeira - Preço: 4 tentativas'
 d2='2. Letra da Capital - Preço: 3 tentativas'
 d3='3. Área - Preço: 6 tenativas'
@@ -3924,21 +3940,26 @@ while tentativas>0:
       cordp=[cord1,cord2]
       dist = haversine(brigadeiro, beijinho, cord1, cord2)
       print('você errou\n''a distância de {} até país sorteado é de {}'.format(tenta, dist))
-
-
-
-
-if escolhe == 2:
-  loja=int(input('Você pode comprar as dicas (1) e (2) multiplas vezes.\n{}\n{}\n{}\n{}\n{}\n{}'.format(d1,d2,d3,d4,d5,d0)))
-  if loja == 1 and tentativas > 4:
-    coresbandsort = cores_da_bandeira(arrumando)
-    sorteio = random.choice(coresbandsort)
-    print(sorteio)
-  if loja == 2 and tentativas > 3:
-    l = sorteia_letra(pais)
-    print (l)
-  if loja == 3 and tentativas > 6:
-    area =  
+  if escolhe == 2:
+    loja=int(input('Você pode comprar as dicas (1) e (2) multiplas vezes.\n{}\n{}\n{}\n{}\n{}\n{}'.format(d1,d2,d3,d4,d5,d0)))
+    if loja == 1 and tentativas > 4:
+      coresbandsort = cores_da_bandeira(arrumando)
+      sorteio = random.choice(coresbandsort)
+      cor_usada.append(sorteio)
+      print(sorteio)
+    if loja == 2 and tentativas > 3:
+      l = sorteia_letra(pais)
+      print (l)
+    if loja == 3 and tentativas > 6:
+      area =  acha_area(arrumando)
+      print("A área é de {} km ". format(area))
+    if loja == 4 and tentativas > 5:
+      pop = acha_populacao(arrumando)
+      print("A população total é de {} habitantes".format(pop))
+    if loja == 5 and tentativas > 7:
+       c =5
+    if loja == 6:
+      break
 
 
 
