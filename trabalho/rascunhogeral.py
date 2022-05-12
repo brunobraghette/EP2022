@@ -3833,6 +3833,25 @@ def normaliza(dicio):
     return diciofinal
 pais = sorteia_pais(DADOS)
 arrumando = normaliza(DADOS)
+def cores_da_bandeira(database):
+  listacores = []
+  if database[pais]['bandeira']['vermelha']>0:
+    listacores.append('vermelha')
+  if database[pais]['bandeira']['amarela']>0:
+    listacores.append('amarela')
+  if database[pais]['bandeira']['laranja']>0:
+    listacores.append('laranja')
+  if database[pais]['bandeira']['verde']>0:
+    listacores.append('verde')
+  if database[pais]['bandeira']['azul']>0:
+    listacores.append('azul')
+  if database[pais]['bandeira']['azul claro']>0:
+    listacores.append('azul claro')
+  if database[pais]['bandeira']['preta']>0:
+    listacores.append('preta')
+  if database[pais]['bandeira']['branca']>0:
+    listacores.append('branca')
+  return listacores
 
 brigadeiro=float(arrumando[pais]['geo']['latitude'])
 beijinho=float(arrumando[pais]['geo']['longitude'])
@@ -3887,6 +3906,13 @@ def adiciona_em_ordem(pais, dist, lista):
                 break
     return lista
 
+d1='1. Cor da Bandeira - Preço: 4 tentativas'
+d2='2. Letra da Capital - Preço: 3 tentativas'
+d3='3. Área - Preço: 6 tenativas'
+d4="4. População - Preço: 5 tenativas "
+d5="5.Continente - Preço: 7 tentativas/n"
+d0="6.Voltar"
+
 tentativas = 20
 while tentativas>0:
   escolhe = int(input('Escolhe uma opção:\n''1. tentar acertar(1)\n''2. mercado de dicas(2)\n'))
@@ -3898,5 +3924,21 @@ while tentativas>0:
       cordp=[cord1,cord2]
       dist = haversine(brigadeiro, beijinho, cord1, cord2)
       print('você errou\n''a distância de {} até país sorteado é de {}'.format(tenta, dist))
+
+
+
+
+if escolhe == 2:
+  loja=int(input('Você pode comprar as dicas (1) e (2) multiplas vezes.\n{}\n{}\n{}\n{}\n{}\n{}'.format(d1,d2,d3,d4,d5,d0)))
+  if loja == 1 and tentativas > 4:
+    coresbandsort = cores_da_bandeira(arrumando)
+    sorteio = random.choice(coresbandsort)
+    print(sorteio)
+  if loja == 2 and tentativas > 3:
+    l = sorteia_letra(pais)
+    print (l)
+  if loja == 3 and tentativas > 6:
+    area =  
+
 
 
