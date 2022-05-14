@@ -3919,3 +3919,28 @@ def dic_dos_continentes(dicio):
     if pais_sorteado in diciofinal.keys():
       chave.append(diciofinal[pais_sorteado])
     return chave[0] 
+
+valor_start=True
+while valor_start==True:
+    valor_retorno=True
+    while valor_retorno==True:
+        tentativas=20
+        pais_sorteado=sorteia_pais(DADOS)
+        arrumado=normaliza(DADOS)
+        latitude_sorteada=float(arrumado[pais_sorteado]['geo']['latitude'])
+        longitude_sorteada=float(arrumado[pais_sorteado]['geo']['longitude'])
+        cordenadas_sorteada=[latitude_sorteada,longitude_sorteada]
+        lista_de_dicas=[]
+        lista_cores=cores_da_bandeira(arrumado)
+        lista_letras_usadas=[]
+        lista_de_tentativas=[]
+        lista_show_cores=[]
+        valor_retorno=False
+        dica3_comprada=False        
+        area_sorteada=acha_area(arrumado)
+        dica4_comprada=False
+        dica5_comprada=False
+        pop_sorteada=acha_populacao(arrumado)
+    while tentativas>0:
+        print('\nVocê tem {} tentativas\n'.format(tentativas))
+        start=input('1.Tentar acertar(1).\n''2.Loja de dicas(2)\n\n')
