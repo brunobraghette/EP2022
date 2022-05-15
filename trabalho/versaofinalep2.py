@@ -3815,7 +3815,6 @@ DADOS = {
     }
   }
 }
-
 def normaliza(dicio):
     diciofinal = {}
     for dados in dicio.values():
@@ -3921,6 +3920,17 @@ def dic_dos_continentes(dicio):
       chave.append(diciofinal[pais_sorteado])
     return chave[0] 
 
+def verifica_duplicata(listadistancias):
+  j=0
+  i=0
+  if listadistancias[i] == listadistancias[j]:
+    listadistancias.remove(listadistancias[i])
+    j+=1
+  else:
+    j+=1
+  return listadistancias
+    
+
 valor_start=True
 while valor_start==True:
     valor_retorno=True
@@ -3943,39 +3953,96 @@ while valor_start==True:
         dica5_comprada=False
         pop_sorteada=acha_populacao(arrumado)
     while tentativas>0:
-      print('\n Você tem ' + colored(tentativas, 'green') + ' tentativas \n')
-      start=input('1.Tentar acertar(1).\n''2.Loja de dicas(2)\n\n')
-      if start=='1':
-        tentativa_de_acerto=input("Qual o país sorteado?\n")
-        if tentativa_de_acerto in arrumado:
-            latitude_chute=float(arrumado[tentativa_de_acerto]['geo']['latitude'])
-            longitude_chute=float(arrumado[tentativa_de_acerto]['geo']['longitude'])
-            if tentativa_de_acerto==pais_sorteado:
-              print("PARABÉNS VOCÊ ACERTOU!!!!")
-              repetir=input('Deseja jogar novamente?[s/n]')
-              if repetir=="s":
-                  valor_retorno=True
-              if repetir=='n':
-                  valor_start=False            
-              if tentativa_de_acerto!=pais_sorteado:
-                calculo = haversine(EARTH_RADIUS,latitude_sorteada,longitude_sorteada,latitude_chute,longitude_chute)
-                ordem = adiciona_em_ordem(tentativa_de_acerto, calculo, lista_de_tentativas)
-                print('\nA distância do país escolhido para o país sorteado é de {} km!'.format(haversine(EARTH_RADIUS,latitude_sorteada,longitude_sorteada,latitude_chute,longitude_chute)))
-                for i in range(len(ordem)):
-                  if ordem[i][1]>=10000:
-                    print(colored (ordem[i], 'magenta'))
-                  elif 10000 > ordem[i][1] and ordem[i][1]>5000:
-                    print(colored (ordem[i], 'cyan'))
-                  elif ordem[i][1] <= 5000:
-                    print(colored(ordem[i], 'yellow'))
-                  tentativas-=1
+        print('\n Você tem ' + colored(tentativas, 'green') + ' tentativas \n')
+        start=input('1.Tentar acertar(1).\n''2.Loja de dicas(2)\n\n')
+        if start=='1':
+            tentativa_de_acerto=input("Qual o país sorteado?\n")
+            if tentativa_de_acerto in arrumado:
+                latitude_chute=float(arrumado[tentativa_de_acerto]['geo']['latitude'])
+                longitude_chute=float(arrumado[tentativa_de_acerto]['geo']['longitude'])
+                if tentativa_de_acerto==pais_sorteado:
+                    print("PARABÉNS VOCÊ ACERTOU!!!!")
+                    repetir=input('Deseja jogar novamente?[s/n]')
+                    if repetir=="s":
+                        valor_retorno=True
+                    if repetir=='n':
+                        valor_start=False
+                if tentativa_de_acerto!=pais_sorteado:
+                    calculo = haversine(EARTH_RADIUS,latitude_sorteada,longitude_sorteada,latitude_chute,longitude_chute)
+                    ordem = adiciona_em_ordem(tentativa_de_acerto, calculo, lista_de_tentativas)
+                    print('\nA distância do país escolhido para o país sorteado é de {} km!'.format(haversine(EARTH_RADIUS,latitude_sorteada,longitude_sorteada,latitude_chute,longitude_chute)))
+                    for i in range(len(ordem)):
+                      if ordem[i][1]>=10000:
+                        print(colored (ordem[i], 'magenta'))
+                      elif 10000 > ordem[i][1] and ordem[i][1]>5000:
+                        print(colored (ordem[i], 'cyan'))
+                      elif ordem[i][1] <= 5000:
+                        print(colored(ordem[i], 'yellow'))
+                    tentativas-=1
             if tentativa_de_acerto not in arrumado:
                 print('Esse país não existe!Tente outro.')
-      if start=='2':
-        d1='1. Cor da Bandeira - Preço: 4 tentativas'
-        d2='2. Letra da Capital - Preço: 3 tentativas'
-        d3='3. Área - Preço: 6 tenativas'
-        d4="4. População - Preço: 5 tenativas "
-        d5="5.Continente - Preço: 7 tentativas/n"
-        d0='6.Voltar'
-        loja=int(input('\nVocê pode comprar as dicas (1) e (2) multiplas vezes!\n{}\n{}\n{}\n{}\n{}\n{}\n\n'.format(d1,d2,d3,d4,d5,d0)))
+        if start=='2':
+            d1='1. Cor da Bandeira - Preço: 4 tentativas'
+            d2='2. Letra da Capital - Preço: 3 tentativas'
+            d3='3. Área - Preço: 6 tenativas'
+            d4="4. População - Preço: 5 tenativas "
+            d5="5.Continente - Preço: 7 tentativas/n"
+            d0='6.Voltar'
+            loja=int(input('\nVocê pode comprar as dicas (1) e (2) multiplas vezes!\n{}\n{}\n{}\n{}\n{}\n{}\n\n'.format(d1,d2,d3,d4,d5,d0)))
+            if loja==1:
+                if tentativas>=4:
+                    cor_sorteada=random.choice(lista_cores)
+                    while cor_sorteada in lista_show_cores:
+                        cor_sorteada=random.choice(lista_cores)
+                    lista_show_cores.append(cor_sorteada)
+                    print(lista_show_cores)
+                    tentativas-=4
+                else:
+                    print('\nVocê não tem tentativas o suficiente!\n')                        
+            if loja==2:
+                if tentativas>=3:
+                    capital=arrumado[pais_sorteado]['capital']
+                    letra_sorteada=sorteia_letra(capital,lista_letras_usadas)
+                    lista_letras_usadas.append(letra_sorteada)
+                    print(lista_letras_usadas)
+                    tentativas-=3
+                else:
+                    print('\nVocê não tem tentativas o suficiente!\n')
+            if loja==3:
+                if dica3_comprada==False:
+                    if tentativas>=6:
+                        dica3_comprada=True
+                        tentativas-=6
+                    else:
+                      print('\nVocê não tem tentativas o suficiente!\n')
+                if dica3_comprada==True:
+                    print('\nA área é do país sorteado é de {} km quadrados!'.format(area_sorteada))
+            if loja==4:
+                if dica4_comprada==False:
+                    if tentativas>=5:
+                        dica4_comprada=True
+                        tentativas-=5
+                    else:
+                        print('\nVocê não tem tentativas o suficiente!\n')
+                if dica4_comprada==True:
+                    print("A população do país escolhido é de {} habitantes!".format(pop_sorteada))   
+            if loja ==5:
+              if dica5_comprada == False:
+                if tentativas>=7:
+                  dica5_comprada=True
+                  tentativas-=7
+                else:
+                  print('\nVocê não tem tentativas o suficiente!\n')
+              if dica5_comprada==True:
+                res = dic_dos_continentes(DADOS)
+                print("O continente do país escolhido é {}".format(res))
+            if loja==6:
+                print('')
+    if tentativas==0:
+        print('\n\nSuas tentaivas acabaram, que pena!\n')
+        repetir=input('\n\nDeseja jogar novamente?[s/n]\n')
+        if repetir=="s":
+            valor_retorno=True
+        if repetir=='n':
+            valor_start=False
+
