@@ -3957,3 +3957,15 @@ while valor_start==True:
                   valor_retorno=True
               if repetir=='n':
                   valor_start=False            
+              if tentativa_de_acerto!=pais_sorteado:
+                calculo = haversine(EARTH_RADIUS,latitude_sorteada,longitude_sorteada,latitude_chute,longitude_chute)
+                ordem = adiciona_em_ordem(tentativa_de_acerto, calculo, lista_de_tentativas)
+                print('\nA distância do país escolhido para o país sorteado é de {} km!'.format(haversine(EARTH_RADIUS,latitude_sorteada,longitude_sorteada,latitude_chute,longitude_chute)))
+                for i in range(len(ordem)):
+                  if ordem[i][1]>=10000:
+                    print(colored (ordem[i], 'magenta'))
+                  elif 10000 > ordem[i][1] and ordem[i][1]>5000:
+                    print(colored (ordem[i], 'cyan'))
+                  elif ordem[i][1] <= 5000:
+                    print(colored(ordem[i], 'yellow'))
+                  tentativas-=1
