@@ -1,5 +1,6 @@
 import random
 import math
+from termcolor import colored
 DADOS = {
   "asia": {
     "afeganistao": {
@@ -3944,3 +3945,8 @@ while valor_start==True:
     while tentativas>0:
       print('\n Você tem ' + colored(tentativas, 'green') + ' tentativas \n')
       start=input('1.Tentar acertar(1).\n''2.Loja de dicas(2)\n\n')
+      if start=='1':
+        tentativa_de_acerto=input("Qual o país sorteado?\n")
+        if tentativa_de_acerto in arrumado:
+            latitude_chute=float(arrumado[tentativa_de_acerto]['geo']['latitude'])
+            longitude_chute=float(arrumado[tentativa_de_acerto]['geo']['longitude'])
