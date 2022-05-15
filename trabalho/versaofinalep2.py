@@ -3969,3 +3969,5 @@ while valor_start==True:
                   elif ordem[i][1] <= 5000:
                     print(colored(ordem[i], 'yellow'))
                   tentativas-=1
+            if tentativa_de_acerto not in arrumado:
+                print('Esse país não existe!Tente outro.')
