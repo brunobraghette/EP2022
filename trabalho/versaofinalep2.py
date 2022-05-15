@@ -3942,5 +3942,5 @@ while valor_start==True:
         dica5_comprada=False
         pop_sorteada=acha_populacao(arrumado)
     while tentativas>0:
-        print('\nVocê tem {} tentativas\n'.format(tentativas))
-        start=input('1.Tentar acertar(1).\n''2.Loja de dicas(2)\n\n')
+      print('\n Você tem ' + colored(tentativas, 'green') + ' tentativas \n')
+      start=input('1.Tentar acertar(1).\n''2.Loja de dicas(2)\n\n')
