@@ -3950,3 +3950,10 @@ while valor_start==True:
         if tentativa_de_acerto in arrumado:
             latitude_chute=float(arrumado[tentativa_de_acerto]['geo']['latitude'])
             longitude_chute=float(arrumado[tentativa_de_acerto]['geo']['longitude'])
+            if tentativa_de_acerto==pais_sorteado:
+              print("PARABÉNS VOCÊ ACERTOU!!!!")
+              repetir=input('Deseja jogar novamente?[s/n]')
+              if repetir=="s":
+                  valor_retorno=True
+              if repetir=='n':
+                  valor_start=False            
