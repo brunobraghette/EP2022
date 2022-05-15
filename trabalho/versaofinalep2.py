@@ -3971,3 +3971,11 @@ while valor_start==True:
                   tentativas-=1
             if tentativa_de_acerto not in arrumado:
                 print('Esse país não existe!Tente outro.')
+      if start=='2':
+        d1='1. Cor da Bandeira - Preço: 4 tentativas'
+        d2='2. Letra da Capital - Preço: 3 tentativas'
+        d3='3. Área - Preço: 6 tenativas'
+        d4="4. População - Preço: 5 tenativas "
+        d5="5.Continente - Preço: 7 tentativas/n"
+        d0='6.Voltar'
+        loja=int(input('\nVocê pode comprar as dicas (1) e (2) multiplas vezes!\n{}\n{}\n{}\n{}\n{}\n{}\n\n'.format(d1,d2,d3,d4,d5,d0)))
